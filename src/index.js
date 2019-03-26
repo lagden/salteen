@@ -12,7 +12,7 @@ function reduce(hasher, base, value) {
 	while (i < chars.length) {
 		tmp = base ? parseInt(chars[i++], 16) : chars[i++];
 		for (j=0; j < hasher.length;) tmp ^= hasher[j++];
-		str += base ? String.fromCharCode(tmp) : tmp.toString(16).padStart(5, '0');
+		str += base ? String.fromCharCode(tmp) : ('0000' + tmp.toString(16)).substr(-5);
 	}
 	return str;
 }
