@@ -1,6 +1,5 @@
 function toChars(str) {
-	const arr = [];
-	let i = 0;
+	var i=0, arr=[];
 	while (i < str.length) {
 		arr.push(str.charCodeAt(i++));
 	}
@@ -8,14 +7,11 @@ function toChars(str) {
 }
 
 function reduce(hasher, base, value) {
-	let i = 0;
-	let str = '';
-	const chars = base ? value.match(/.{1,5}/ug) : toChars(value);
+	var i=0, j, tmp, str='';
+	var chars = base ? value.match(/.{1,5}/gu) : toChars(value);
 	while (i < chars.length) {
-		let tmp = base ? parseInt(chars[i++], 16) : chars[i++];
-		for (let j=0; j < hasher.length;) {
-			tmp ^= hasher[j++];
-		}
+		tmp = base ? parseInt(chars[i++], 16) : chars[i++];
+		for (j=0; j < hasher.length;) tmp ^= hasher[j++];
 		str += base ? String.fromCharCode(tmp) : tmp.toString(16).padStart(5, '0');
 	}
 	return str;
