@@ -22,9 +22,9 @@ function reduce(hasher, base, value) {
 }
 
 export function encrypt(key) {
-	return value => reduce(toChars(key), 0, value);
+	return reduce.bind(reduce, toChars(key), 0);
 }
 
 export function decrypt(key) {
-	return value => reduce(toChars(key), 1, value);
+	return reduce.bind(reduce, toChars(key), 1);
 }
